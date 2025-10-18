@@ -43,5 +43,3 @@ logs/
 # Configuration personnelle (si vous avez des fichiers de config locaux)
 config_local.yml
 application-local.properties
-gradle/wrapper/gradle-wrapper.jar
-gradle/wrapper/gradle-wrapper.properties
