@@ -1,0 +1,47 @@
+# Build outputs
+build/
+out/
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+!gradle-wrapper.properties
+
+# IDE files
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Minecraft server files (si utilisés pour les tests)
+run/
+world/
+world_nether/
+world_the_end/
+server.properties
+bukkit.yml
+spigot.yml
+paper.yml
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+
+# JAR files générés (optionnel - décommentez si vous voulez ignorer les JARs générés)
+# *.jar
+
+# Configuration personnelle (si vous avez des fichiers de config locaux)
+config_local.yml
+application-local.properties
+gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/gradle-wrapper.properties

@@ -1,0 +1,10 @@
+name: TwitchInteractive
+version: '1.0'
+main: fr.hydroxios.twitchInteractive.TwitchInteractive
+api-version: '1.21'
+
+commands:
+  ti:
+    description: Commande principale de TwitchInteractive
+    usage: /ti <sous-commande> [arguments...]
+    permission: twitchinteractive.use
