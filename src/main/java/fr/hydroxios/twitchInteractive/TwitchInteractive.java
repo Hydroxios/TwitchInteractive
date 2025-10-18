@@ -28,7 +28,7 @@ public final class TwitchInteractive extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerListener(), this);
 
         this.commandManager = new CommandManager();
-        Twitch.get();
+        Twitch.get().init();
     }
 
     @Override
