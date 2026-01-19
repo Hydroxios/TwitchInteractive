@@ -17,7 +17,8 @@ public class CommandStatus implements ICommand {
         StringBuilder sb = new StringBuilder();
         sb.append("&6===== Twitch Status =====\n\n");
         WebsocketConnectionState chatState = Twitch.get().getClient().getChat().getState();
-        sb.append("&bChat: ").append(Utils.getColorByState(chatState)).append(chatState.name()).append("\n\n");
+        sb.append("&bChat: ").append(Utils.getColorByState(chatState)).append(chatState.name()).append("\n");
+        sb.append("&bChannel: ").append(Twitch.get().getChannel()).append("\n\n");
         sb.append(" ");
 
         sender.sendMessage(Utils.formatColoredText(sb.toString()));

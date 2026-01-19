@@ -84,4 +84,8 @@ public class Twitch {
     public TwitchClient getClient() {
         return client;
     }
+
+    public String getChannel() {
+        return config.getChannel();
+    }
 }
