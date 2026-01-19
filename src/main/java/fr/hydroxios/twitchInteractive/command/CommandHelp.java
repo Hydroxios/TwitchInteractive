@@ -17,7 +17,7 @@ public class CommandHelp implements ICommand {
         sender.sendMessage(Utils.formatColoredText("&6=== Aide " + References.PREFIX + " &6==="));
         sender.sendMessage("");
         sender.sendMessage(Utils.formatColoredText("&eCommandes de configuration:"));
-        sender.sendMessage(Utils.formatColoredText("&7/ti connect <token> &f- Connecter le bot à Twitch"));
+        sender.sendMessage(Utils.formatColoredText("&7/ti token <token> &f- Définir le token Twitch du bot"));
         sender.sendMessage(Utils.formatColoredText("&7/ti disconnect &f- Déconnecter le bot de Twitch"));
         sender.sendMessage(
                 Utils.formatColoredText("&7/ti channel <nom_channel> &f- Définir le channel Twitch à rejoindre"));
@@ -28,8 +28,9 @@ public class CommandHelp implements ICommand {
         sender.sendMessage(Utils.formatColoredText("&7/ti status &f- Afficher le statut de la connexion"));
         sender.sendMessage("");
         sender.sendMessage(Utils.formatColoredText("&eConfiguration initiale:"));
-        sender.sendMessage(Utils.formatColoredText("&71. Obtenez un token OAuth sur &bhttps://twitchapps.com/tmi/"));
-        sender.sendMessage(Utils.formatColoredText("&72. Utilisez &b/ti connect <votre_token>"));
+        sender.sendMessage(
+                Utils.formatColoredText("&71. Obtenez un token OAuth sur &bhttps://twitchtokengenerator.com/"));
+        sender.sendMessage(Utils.formatColoredText("&72. Utilisez &b/ti token <votre_token>"));
         sender.sendMessage(Utils.formatColoredText("&73. Définissez votre channel avec &b/ti channel <votre_channel>"));
         sender.sendMessage("");
         sender.sendMessage(Utils

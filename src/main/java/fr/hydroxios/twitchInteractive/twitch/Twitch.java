@@ -69,9 +69,12 @@ public class Twitch {
     }
 
     public void destroy() {
+        if (client == null)
+            return;
         getClient().getChat().disconnect();
         getClient().getChat().close();
         getClient().close();
+        this.client = null;
     }
 
     public TwitchCommandManager getCommandManager() {

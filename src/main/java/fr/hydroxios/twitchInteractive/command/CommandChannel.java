@@ -1,5 +1,6 @@
 package fr.hydroxios.twitchInteractive.command;
 
+import fr.hydroxios.twitchInteractive.TwitchInteractive;
 import fr.hydroxios.twitchInteractive.utils.References;
 import fr.hydroxios.twitchInteractive.utils.Utils;
 import org.bukkit.command.CommandSender;
@@ -23,6 +24,9 @@ public class CommandChannel implements ICommand {
         if (channel.startsWith("#")) {
             channel = channel.substring(1);
         }
+
+        TwitchInteractive.INSTANCE.getConfig().set("twitch.channel", channel);
+        TwitchInteractive.INSTANCE.saveConfig();
 
         sender.sendMessage(Utils.formatColoredText(
                 References.PREFIX + " &aChannel défini sur: &e#" + channel));
