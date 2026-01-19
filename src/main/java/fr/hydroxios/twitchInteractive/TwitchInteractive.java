@@ -5,6 +5,8 @@ import fr.hydroxios.twitchInteractive.listener.PlayerListener;
 import fr.hydroxios.twitchInteractive.manager.CommandManager;
 import fr.hydroxios.twitchInteractive.twitch.Twitch;
 import fr.hydroxios.twitchInteractive.utils.References;
+import fr.hydroxios.twitchInteractive.utils.Utils;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -37,7 +39,8 @@ public final class TwitchInteractive extends JavaPlugin {
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
+            @NotNull String[] args) {
         // Vérifier si la commande est "ti"
         if (!label.equalsIgnoreCase("ti") || args.length == 0) {
             return super.onCommand(sender, command, label, args);
@@ -53,13 +56,15 @@ public final class TwitchInteractive extends JavaPlugin {
         // Chercher la sous-commande dans le gestionnaire
         Optional<ICommand> cmd = commandManager.find((c) -> c.getName().equals(subCommand));
         return cmd.map(value -> value.execute(sender, subArgs)).orElseGet(() -> {
-            sender.sendMessage(References.PREFIX + "§cSous-commande inconnue. Utilisez §e/ti help §cpour voir les commandes disponibles.");
+            sender.sendMessage(References.PREFIX + Utils.formatColoredText(
+                    "&cSous-commande inconnue. Utilisez &e/ti help &cpour voir les commandes disponibles."));
             return true;
         });
     }
 
     @Override
-    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
+    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias,
+            @NotNull String[] args) {
         // Vérifier si c'est la commande "ti"
         if (!command.getName().equalsIgnoreCase("ti")) {
             return null;

@@ -5,12 +5,16 @@ import org.bukkit.ChatColor;
 
 public class Utils {
 
-    public static ChatColor getColorByState(WebsocketConnectionState state){
-        return switch (state){
+    public static ChatColor getColorByState(WebsocketConnectionState state) {
+        return switch (state) {
             case DISCONNECTING, RECONNECTING, CONNECTING -> ChatColor.AQUA;
             case DISCONNECTED, LOST -> ChatColor.RED;
             case CONNECTED -> ChatColor.GREEN;
         };
+    }
+
+    public static String formatColoredText(String text) {
+        return ChatColor.translateAlternateColorCodes('&', text);
     }
 
 }

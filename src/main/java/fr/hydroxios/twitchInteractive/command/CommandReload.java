@@ -1,10 +1,11 @@
 package fr.hydroxios.twitchInteractive.command;
 
 import fr.hydroxios.twitchInteractive.utils.References;
+import fr.hydroxios.twitchInteractive.utils.Utils;
+
 import org.bukkit.command.CommandSender;
 
-public class CommandReload implements ICommand{
-
+public class CommandReload implements ICommand {
 
     @Override
     public String getName() {
@@ -13,10 +14,9 @@ public class CommandReload implements ICommand{
 
     @Override
     public boolean execute(CommandSender sender, String[] args) {
-        sender.sendMessage(References.PREFIX + "§aRechargement de la configuration...");
-        // Ici vous pouvez ajouter la logique de rechargement
-        // Par exemple : recharger la configuration depuis les fichiers
-        sender.sendMessage(References.PREFIX + "§aConfiguration rechargée avec succès !");
+        sender.sendMessage(References.PREFIX + Utils.formatColoredText("&aRechargement de la configuration..."));
+        // TODO: Recharger la configuration
+        sender.sendMessage(References.PREFIX + Utils.formatColoredText("&aConfiguration rechargée avec succès !"));
         return true;
     }
 }

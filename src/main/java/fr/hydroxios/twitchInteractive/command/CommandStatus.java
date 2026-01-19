@@ -3,7 +3,6 @@ package fr.hydroxios.twitchInteractive.command;
 import com.github.twitch4j.client.websocket.domain.WebsocketConnectionState;
 import fr.hydroxios.twitchInteractive.twitch.Twitch;
 import fr.hydroxios.twitchInteractive.utils.Utils;
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
 public class CommandStatus implements ICommand {
@@ -21,7 +20,7 @@ public class CommandStatus implements ICommand {
         sb.append("&bChat: ").append(Utils.getColorByState(chatState)).append(chatState.name()).append("\n\n");
         sb.append(" ");
 
-        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', sb.toString()));
+        sender.sendMessage(Utils.formatColoredText(sb.toString()));
         return true;
     }
 }
