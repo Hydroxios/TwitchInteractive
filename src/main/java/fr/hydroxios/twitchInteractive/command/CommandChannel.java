@@ -21,7 +21,7 @@ public class CommandChannel implements ICommand {
 
         String channel = args[0];
         if (channel.startsWith("#")) {
-            channel = channel.substring(1); // Enlever le # si présent
+            channel = channel.substring(1);
         }
 
         sender.sendMessage(Utils.formatColoredText(

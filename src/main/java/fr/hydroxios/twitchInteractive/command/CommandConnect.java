@@ -23,7 +23,7 @@ public class CommandConnect implements ICommand {
 
         String token = args[0];
         if (token.startsWith("oauth:")) {
-            token = token.substring(6); // Enlever le préfixe oauth: si présent
+            token = token.substring(6);
         }
 
         sender.sendMessage(Utils.formatColoredText(
