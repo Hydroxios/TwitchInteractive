@@ -2,12 +2,11 @@ package fr.hydroxios.twitchInteractive.command;
 
 import com.github.twitch4j.client.websocket.domain.WebsocketConnectionState;
 import fr.hydroxios.twitchInteractive.twitch.Twitch;
-import fr.hydroxios.twitchInteractive.utils.References;
 import fr.hydroxios.twitchInteractive.utils.Utils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
-public class CommandStatus implements ICommand{
+public class CommandStatus implements ICommand {
 
     @Override
     public String getName() {
@@ -23,7 +22,6 @@ public class CommandStatus implements ICommand{
         sb.append(" ");
 
         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', sb.toString()));
-        // Ici vous pouvez ajouter la vraie logique pour récupérer le statut
         return true;
     }
 }
