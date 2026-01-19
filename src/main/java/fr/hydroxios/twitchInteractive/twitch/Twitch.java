@@ -13,77 +13,68 @@ import java.util.logging.Logger;
 public class Twitch {
 
     private TwitchClient client;
+    private Logger logger;
 
-    String clientId, clientSecret;
-    String token;
-    String channel;
+    private TwitchConfig config;
 
     private static Twitch INSTANCE;
 
     private TwitchCommandManager commandManager;
 
-    public Twitch(FileConfiguration configuration){
+    public Twitch() {
+        this.logger = TwitchInteractive.INSTANCE.getLogger();
         INSTANCE = this;
-        Logger logger = TwitchInteractive.INSTANCE.getLogger();
-        boolean success = true;
-        if(!configuration.contains("twitch.client_id")) {
-            logger.severe("Twitch client id is missing !");
-            success = false;
-        }
-        if(!configuration.contains("twitch.client_secret")){
-            logger.severe("Twitch client secret is missing !");
-            success = false;
-        }
-        if(!configuration.contains("twitch.token")){
-            logger.severe("Twitch token is missing !");
-            success = false;
-        }
-        if(!configuration.contains("twitch.channel")){
-            logger.severe("No channel defined !");
-            success = false;
-        }
-        if(!success) {
+    }
+
+    public void init() {
+        FileConfiguration configuration = TwitchInteractive.INSTANCE.getConfig();
+
+        if (!TwitchConfig.validate(configuration, logger)) {
             logger.severe("Twitch failed to initialize !");
             return;
         }
-        this.clientId = configuration.getString("twitch.client_id");
-        this.clientSecret = configuration.getString("twitch.client_secret");
-        this.token = configuration.getString("twitch.token");
-        this.channel = configuration.getString("twitch.channel");
 
-        OAuth2Credential credentials = new OAuth2Credential("twitch", "oauth:" + token);
+        this.config = new TwitchConfig(configuration);
+
+        OAuth2Credential credentials = new OAuth2Credential("twitch",
+                "oauth:" + (!config.getToken().startsWith("oauth:") ? config.getToken()
+                        : config.getToken().replace("oauth:", "")));
         this.client = TwitchClientBuilder.builder()
                 .withChatAccount(credentials)
                 .withDefaultAuthToken(credentials)
-                .withClientId(clientId)
-                .withClientSecret(clientSecret)
+                .withClientId(config.getClientId())
+                .withClientSecret(config.getClientSecret())
                 .withEnableHelix(true)
                 .withEnableChat(true)
                 .build();
 
         this.commandManager = new TwitchCommandManager();
 
-        //this.client.getClientHelper().enableStreamEventListener(this.channel);
+        // this.client.getClientHelper().enableStreamEventListener(config.getChannel());
 
-        this.client.getClientHelper().enableFollowEventListener(this.channel);
+        this.client.getClientHelper().enableFollowEventListener(config.getChannel());
         this.client.getEventManager().onEvent(ChannelMessageEvent.class, TwitchEventListeners::onMessage);
 
         this.client.getEventManager().onEvent(FollowEvent.class, TwitchEventListeners::onFollow);
 
-        logger.info("Joining " + channel + "'s channel...");
-        this.client.getChat().joinChannel(channel);
+        logger.info("Joining " + config.getChannel() + "'s channel...");
+        this.client.getChat().joinChannel(config.getChannel());
         logger.info("Channel joined !");
     }
 
-    public static Twitch get(){
-        if(INSTANCE == null) INSTANCE = new Twitch(TwitchInteractive.INSTANCE.getConfig());
+    public static Twitch get() {
+        if (INSTANCE == null)
+            INSTANCE = new Twitch();
         return INSTANCE;
     }
 
-    public void destroy(){
+    public void destroy() {
+        if (client == null)
+            return;
         getClient().getChat().disconnect();
         getClient().getChat().close();
         getClient().close();
+        this.client = null;
     }
 
     public TwitchCommandManager getCommandManager() {
@@ -92,5 +83,9 @@ public class Twitch {
 
     public TwitchClient getClient() {
         return client;
+    }
+
+    public String getChannel() {
+        return config.getChannel();
     }
 }

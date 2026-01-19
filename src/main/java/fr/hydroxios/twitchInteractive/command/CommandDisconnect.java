@@ -1,10 +1,11 @@
 package fr.hydroxios.twitchInteractive.command;
 
+import fr.hydroxios.twitchInteractive.twitch.Twitch;
 import fr.hydroxios.twitchInteractive.utils.References;
+import fr.hydroxios.twitchInteractive.utils.Utils;
 import org.bukkit.command.CommandSender;
 
 public class CommandDisconnect implements ICommand {
-
 
     @Override
     public String getName() {
@@ -13,9 +14,11 @@ public class CommandDisconnect implements ICommand {
 
     @Override
     public boolean execute(CommandSender sender, String[] args) {
-        sender.sendMessage(References.PREFIX + "§aDéconnexion de Twitch...");
-        // Ici vous pouvez ajouter la logique de déconnexion de Twitch
-        sender.sendMessage(References.PREFIX + "§aDéconnexion réussie !");
+        sender.sendMessage(Utils.formatColoredText(
+                References.PREFIX + " &aDéconnexion de Twitch..."));
+        Twitch.get().destroy();
+        sender.sendMessage(Utils.formatColoredText(
+                References.PREFIX + " &aDéconnexion réussie !"));
         return true;
     }
 }
