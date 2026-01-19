@@ -14,9 +14,10 @@ public class CommandConnect implements ICommand {
     @Override
     public boolean execute(CommandSender sender, String[] args) {
         if (args.length == 0) {
-            sender.sendMessage(References.PREFIX + Utils.formatColoredText("&cUsage: /ti connect <token>"));
-            sender.sendMessage(References.PREFIX
-                    + Utils.formatColoredText("&7Obtenez votre token sur: &bhttps://twitchapps.com/tmi/"));
+            sender.sendMessage(Utils.formatColoredText(
+                    References.PREFIX + " &cUsage: /ti connect <token>"));
+            sender.sendMessage(Utils.formatColoredText(
+                    References.PREFIX + " &7Obtenez votre token sur: &bhttps://twitchapps.com/tmi/"));
             return true;
         }
 
@@ -25,9 +26,11 @@ public class CommandConnect implements ICommand {
             token = token.substring(6); // Enlever le préfixe oauth: si présent
         }
 
-        sender.sendMessage(References.PREFIX + Utils.formatColoredText("&aConnexion à Twitch avec le token fourni..."));
+        sender.sendMessage(Utils.formatColoredText(
+                References.PREFIX + " &aConnexion à Twitch avec le token fourni..."));
         // TODO: Connecter le bot à Twitch
-        sender.sendMessage(References.PREFIX + Utils.formatColoredText("&aConnexion réussie !"));
+        sender.sendMessage(Utils.formatColoredText(
+                References.PREFIX + " &aConnexion réussie !"));
 
         return true;
     }

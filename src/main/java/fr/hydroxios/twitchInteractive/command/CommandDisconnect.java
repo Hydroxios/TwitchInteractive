@@ -13,9 +13,11 @@ public class CommandDisconnect implements ICommand {
 
     @Override
     public boolean execute(CommandSender sender, String[] args) {
-        sender.sendMessage(References.PREFIX + Utils.formatColoredText("&aDéconnexion de Twitch..."));
+        sender.sendMessage(Utils.formatColoredText(
+                References.PREFIX + " &aDéconnexion de Twitch..."));
         // Ici vous pouvez ajouter la logique de déconnexion de Twitch
-        sender.sendMessage(References.PREFIX + Utils.formatColoredText("&aDéconnexion réussie !"));
+        sender.sendMessage(Utils.formatColoredText(
+                References.PREFIX + " &aDéconnexion réussie !"));
         return true;
     }
 }

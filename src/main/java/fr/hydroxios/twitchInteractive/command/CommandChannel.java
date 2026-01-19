@@ -14,7 +14,8 @@ public class CommandChannel implements ICommand {
     @Override
     public boolean execute(CommandSender sender, String[] args) {
         if (args.length == 0) {
-            sender.sendMessage(References.PREFIX + Utils.formatColoredText("&cUsage: /ti channel <nom_channel>"));
+            sender.sendMessage(Utils.formatColoredText(
+                    References.PREFIX + " &cUsage: /ti channel <nom_channel>"));
             return true;
         }
 
@@ -23,7 +24,8 @@ public class CommandChannel implements ICommand {
             channel = channel.substring(1); // Enlever le # si présent
         }
 
-        sender.sendMessage(References.PREFIX + Utils.formatColoredText("&aChannel défini sur: &e#" + channel));
+        sender.sendMessage(Utils.formatColoredText(
+                References.PREFIX + " &aChannel défini sur: &e#" + channel));
         return true;
     }
 }

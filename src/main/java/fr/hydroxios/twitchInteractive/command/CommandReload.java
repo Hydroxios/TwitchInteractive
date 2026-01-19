@@ -14,9 +14,11 @@ public class CommandReload implements ICommand {
 
     @Override
     public boolean execute(CommandSender sender, String[] args) {
-        sender.sendMessage(References.PREFIX + Utils.formatColoredText("&aRechargement de la configuration..."));
+        sender.sendMessage(Utils.formatColoredText(
+                References.PREFIX + " &aRechargement de la configuration..."));
         // TODO: Recharger la configuration
-        sender.sendMessage(References.PREFIX + Utils.formatColoredText("&aConfiguration rechargée avec succès !"));
+        sender.sendMessage(Utils.formatColoredText(
+                References.PREFIX + " &aConfiguration rechargée avec succès !"));
         return true;
     }
 }

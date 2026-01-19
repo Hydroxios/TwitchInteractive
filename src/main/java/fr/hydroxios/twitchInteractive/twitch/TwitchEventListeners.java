@@ -27,8 +27,8 @@ public class TwitchEventListeners {
     }
 
     public static void onFollow(FollowEvent e) {
-        Bukkit.broadcastMessage(
-                References.PREFIX + Utils.formatColoredText("&b" + e.getUser().getName() + " &fis now following !"));
+        Bukkit.broadcastMessage(Utils.formatColoredText(
+                References.PREFIX + " &b" + e.getUser().getName() + " &fis now following !"));
 
     }
 

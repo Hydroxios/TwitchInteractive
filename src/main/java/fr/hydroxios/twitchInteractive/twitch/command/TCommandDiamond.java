@@ -31,14 +31,14 @@ public class TCommandDiamond implements ITwitchCommand {
             if (p == null || !p.isOnline())
                 return;
             p.getInventory().addItem(new ItemStack(Material.DIAMOND));
-            p.sendMessage(References.PREFIX
-                    + Utils.formatColoredText("&6" + sender.getName() + " &fgave you a &bdiamond&f !"));
+            p.sendMessage(Utils.formatColoredText(
+                    References.PREFIX + " &6" + sender.getName() + " &fgave you a &bdiamond&f !"));
         } else {
             Bukkit.getScheduler().runTask(TwitchInteractive.INSTANCE, () -> {
                 for (Player p : Bukkit.getOnlinePlayers()) {
                     p.getInventory().addItem(new ItemStack(Material.DIAMOND));
-                    p.sendMessage(References.PREFIX
-                            + Utils.formatColoredText("&6" + sender.getName() + " &fgave you a &bdiamond&f !"));
+                    p.sendMessage(Utils.formatColoredText(
+                            References.PREFIX + " &6" + sender.getName() + " &fgave you a &bdiamond&f !"));
                     p.playSound(p, Sound.ENTITY_PLAYER_LEVELUP, 1f, 0.75f);
                     spawnDiamondRain(p, (int) Math.round(Math.random() * 15));
                 }
@@ -61,21 +61,18 @@ public class TCommandDiamond implements ITwitchCommand {
                     Item item = player.getWorld().dropItemNaturally(
                             new Location(player.getWorld(), x, y, z),
                             stack);
-                    // Rends l'item impossible à ramasser
                     item.setPickupDelay(Integer.MAX_VALUE);
-                    // Optionnel : petit effet de chute pour la pluie
                     item.setVelocity(new Vector(
                             (random.nextDouble() - 0.5) * 0.2,
                             0.2 + random.nextDouble() * 0.2,
                             (random.nextDouble() - 0.5) * 0.2));
 
-                    // Remove l'item après 5 secondes
                     new BukkitRunnable() {
                         @Override
                         public void run() {
                             item.remove();
                         }
-                    }.runTaskLater(TwitchInteractive.INSTANCE, 100L); // 100 ticks = 5 secondes
+                    }.runTaskLater(TwitchInteractive.INSTANCE, 100L);
                 }
             }.runTaskLater(TwitchInteractive.INSTANCE, 20L * i);
 

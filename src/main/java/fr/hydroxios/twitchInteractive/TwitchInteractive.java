@@ -56,8 +56,9 @@ public final class TwitchInteractive extends JavaPlugin {
         // Chercher la sous-commande dans le gestionnaire
         Optional<ICommand> cmd = commandManager.find((c) -> c.getName().equals(subCommand));
         return cmd.map(value -> value.execute(sender, subArgs)).orElseGet(() -> {
-            sender.sendMessage(References.PREFIX + Utils.formatColoredText(
-                    "&cSous-commande inconnue. Utilisez &e/ti help &cpour voir les commandes disponibles."));
+            sender.sendMessage(Utils.formatColoredText(
+                    References.PREFIX
+                            + " &cSous-commande inconnue. Utilisez &e/ti help &cpour voir les commandes disponibles."));
             return true;
         });
     }
